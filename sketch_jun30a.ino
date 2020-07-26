@@ -17,15 +17,85 @@ void setup()
 
 void loop()
 {
-  int color1[3] = {155, 0, 115};
-  int color2[3] = {35, 0, 100};
+  int color1[3] = {255, 0, 0};
+  int color2[3] = {3, 2, 200};
+  int color3[3] = {255, 150, 255};
   int delayval = 70;
   //twinspin(color1, color2, delayval);
-  // buffer(color1, delayval);
-   //bufferdual(color1, delayval);
-  //bufferpenta(color1, delayval);
-  //twinfill(color1, color2, delayval);
-  twinfillwblack(color1, color2, delayval);
+  //buffer(color1, delayval);
+  //bufferdual(color1,color2, delayval);
+  //bufferpenta(color3, delayval);
+  //twinfill(color1, color3, delayval);
+  rainbowrevisited(delayval);
+  //twinfillwblack(color1, color2, delayval);
+}
+void rainbowrevisited(int delayval)
+{
+  int arrlen = 15;
+  int colormatrix[15][3] = {{255, 0, 125},
+                            {255, 0, 255},
+                            {255, 0, 255},
+                            {125, 0, 255},
+                            {0, 0, 255},
+                            {0, 0, 255},
+                            {0, 125, 255},
+                            {0, 255, 255},
+                            {0, 255, 125},
+                            {0, 255, 0},
+                            {0, 255, 0},
+                            {125, 255, 0},
+                            {255, 125, 0},
+                            {255, 0, 0},
+                            {255, 0, 0}
+
+  };
+  /*
+  int colormatrix[30][3] = {{255,0,0},
+                            {255,51,0},
+                            {255,102,0},
+                            {255,153,0},
+                            {255,204,0},
+                            {255,255,0},
+                            {204,255,0},
+                            {153,255,0},
+                            {102,255,0},
+                            {51,255,0},
+                            {0,255,0},
+                            {0,255,51},
+                            {0,255,102},
+                            {0,255,153},
+                            {0,255,204},
+                            {0,255,255},
+                            {0,204,255},
+                            {0,153,255},
+                            {0,102,255},
+                            {0,51,255},
+                            {0,0,255},
+                            {51,0,255},
+                            {102,0,255},
+                            {153,0,255},
+                            {204,0,255},
+                            {255,0,255},
+                            {255,0,204},
+                            {255,0,153},
+                            {255,0,102},
+                            {255,0,53}}; */
+
+  for (int i = 0; i < arrlen; i++)
+  {
+    for (int j = 0; j < NUMPIXELS; j++)
+    {
+      pixels.setPixelColor(j, pixels.Color(colormatrix[(i + j) % (arrlen)][0], colormatrix[(i + j) % (arrlen)][1], colormatrix[(i + j) % (arrlen)][2]));
+    }
+    pixels.show();
+    delay(0.5 * delayval);
+    for (int j = 0; j < NUMPIXELS; j++)
+    {
+      pixels.setPixelColor(j, pixels.Color(0.5 * colormatrix[(i + j) % (arrlen)][0] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][0], 0.5 * colormatrix[(i + j) % (arrlen)][1] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][1], 0.5 * colormatrix[(i + j) % (arrlen)][2] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][2]));
+    }
+    pixels.show();
+    delay(0.5 * delayval);
+  }
 }
 
 void twinspin(int c1[3], int c2[3], int delayval)
@@ -98,7 +168,7 @@ void buffer(int c1[3], int delayval)
     delay(0.5 * delayval);
   }
 }
-void bufferdual(int c1[3], int delayval)
+void bufferdual(int c1[3], int c2[3], int delayval)
 {
 
   int colormatrix[15][3] = {
@@ -109,11 +179,11 @@ void bufferdual(int c1[3], int delayval)
       {(int)floor(0.25 * c1[0]), (int)floor(0.25 * c1[1]), (int)floor(0.25 * c1[2])},
       {0, 0, 0},
       {0, 0, 0},
-      {c1[0], c1[1], c1[2]},
-      {c1[0], c1[1], c1[2]},
-      {(int)floor(0.75 * c1[0]), (int)floor(0.75 * c1[1]), (int)floor(0.75 * c1[2])},
-      {(int)floor(0.5 * c1[0]), (int)floor(0.5 * c1[1]), (int)floor(0.5 * c1[2])},
-      {(int)floor(0.25 * c1[0]), (int)floor(0.25 * c1[1]), (int)floor(0.25 * c1[2])},
+      {c2[0], c2[1], c2[2]},
+      {c2[0], c2[1], c2[2]},
+      {(int)floor(0.75 * c2[0]), (int)floor(0.75 * c2[1]), (int)floor(0.75 * c2[2])},
+      {(int)floor(0.5 * c2[0]), (int)floor(0.5 * c2[1]), (int)floor(0.5 * c2[2])},
+      {(int)floor(0.25 * c2[0]), (int)floor(0.25 * c2[1]), (int)floor(0.25 * c2[2])},
       {0, 0, 0},
       {0, 0, 0},
       {0, 0, 0}};
