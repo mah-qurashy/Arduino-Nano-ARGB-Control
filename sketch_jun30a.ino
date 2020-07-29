@@ -20,7 +20,7 @@ void loop()
   int color1[3] = {255, 0, 0};
   int color2[3] = {3, 2, 200};
   int color3[3] = {255, 150, 255};
-  int delayval = 70;
+  int delayval = 120;
   //twinspin(color1, color2, delayval);
   //buffer(color1, delayval);
   //bufferdual(color1,color2, delayval);
@@ -88,14 +88,29 @@ void rainbowrevisited(int delayval)
       pixels.setPixelColor(j, pixels.Color(colormatrix[(i + j) % (arrlen)][0], colormatrix[(i + j) % (arrlen)][1], colormatrix[(i + j) % (arrlen)][2]));
     }
     pixels.show();
-    delay(0.5 * delayval);
+    delay(0.25 * delayval);
     for (int j = 0; j < NUMPIXELS; j++)
+    {
+      pixels.setPixelColor(j, pixels.Color(0.72 * colormatrix[(i + j) % (arrlen)][0] + 0.25 * colormatrix[(i + j + 1) % (arrlen)][0], 0.75 * colormatrix[(i + j) % (arrlen)][1] + 0.25 * colormatrix[(i + j + 1) % (arrlen)][1], 0.75 * colormatrix[(i + j) % (arrlen)][2] + 0.25 * colormatrix[(i + j + 1) % (arrlen)][2]));
+    }
+    pixels.show();
+    delay(0.25 * delayval);
+  
+      for (int j = 0; j < NUMPIXELS; j++)
     {
       pixels.setPixelColor(j, pixels.Color(0.5 * colormatrix[(i + j) % (arrlen)][0] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][0], 0.5 * colormatrix[(i + j) % (arrlen)][1] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][1], 0.5 * colormatrix[(i + j) % (arrlen)][2] + 0.5 * colormatrix[(i + j + 1) % (arrlen)][2]));
     }
     pixels.show();
-    delay(0.5 * delayval);
-  }
+    delay(0.25 * delayval);
+  
+      for (int j = 0; j < NUMPIXELS; j++)
+    {
+      pixels.setPixelColor(j, pixels.Color(0.25 * colormatrix[(i + j) % (arrlen)][0] + 0.75 * colormatrix[(i + j + 1) % (arrlen)][0], 0.25 * colormatrix[(i + j) % (arrlen)][1] + 0.75 * colormatrix[(i + j + 1) % (arrlen)][1], 0.25 * colormatrix[(i + j) % (arrlen)][2] + 0.75 * colormatrix[(i + j + 1) % (arrlen)][2]));
+    }
+    pixels.show();
+    delay(0.25 * delayval);
+  
+}
 }
 
 void twinspin(int c1[3], int c2[3], int delayval)
